@@ -19,6 +19,10 @@ public class Customer{
 
     @OneToMany(mappedBy = "customer" , cascade = CascadeType.ALL)
     private List<TripBooking> tripBookingList = new ArrayList<>();
+
+    public Customer() {
+    }
+
     public Customer(Integer customerId, String mobile, String password) {
         this.customerId = customerId;
         this.mobile = mobile;
@@ -58,4 +62,6 @@ public class Customer{
     public void setTripBookingList(List<TripBooking> tripBookingList) {
         this.tripBookingList = tripBookingList;
     }
+
+
 }
