@@ -31,12 +31,16 @@ public class Admin{
         return adminId;
     }
 
-    public String getUserName() {
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
+    }
+
+    public String getUsername() {
         return Username;
     }
 
-    public void setUserName(String userName) {
-        this.Username = userName;
+    public void setUsername(String username) {
+        Username = username;
     }
 
     public String getPassword() {
@@ -45,9 +49,5 @@ public class Admin{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setAdminId(Integer adminId) {
-        adminId = adminId;
     }
 }

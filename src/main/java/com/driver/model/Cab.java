@@ -47,7 +47,7 @@ public class Cab{
     }
 
     public void setAvailable(boolean available) {
-        this.Available = available;
+        Available = available;
     }
 
     public Driver getDriver() {
