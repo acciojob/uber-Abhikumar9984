@@ -9,9 +9,8 @@ public class Cab{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer cabId;
+    private Integer id;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer perKmRate;
 
     private boolean available;
@@ -27,11 +26,13 @@ public class Cab{
         this.available = available;
     }
 
-    public Integer getCabId() {
-        return cabId;
+    public Integer getId() {
+        return id;
     }
 
-
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getPerKmRate() {
         return perKmRate;
@@ -49,10 +50,6 @@ public class Cab{
         this.available = available;
     }
 
-    public void setCabId(Integer cabId) {
-        this.cabId = cabId;
-    }
-
     public Driver getDriver() {
         return driver;
     }
@@ -60,6 +57,4 @@ public class Cab{
     public void setDriver(Driver driver) {
         this.driver = driver;
     }
-
-
 }
