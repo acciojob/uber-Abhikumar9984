@@ -73,23 +73,13 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void cancelTrip(Integer tripId){
 		//Cancel the trip having given trip Id and update TripBooking attributes accordingly
-         TripBooking trip1  = tripBookingRepository2.findById(tripId).get();
-		 TripBooking trip = tripBookingRepository2.findById(tripId).get();
-		 trip.setStatus(TripStatus.CANCELED);
-
-		 Customer customer  = trip.getCustomer();
-		 Driver driver  = trip.getDriver();
-		 List<TripBooking> customerTripList  = customer.getTripBookingList();
-		 List<TripBooking> driverTripList  = driver.getTripBookingList();
-
-		 customerTripList.add(trip);
-		 driverTripList.add(trip);
-
-		 customerTripList.remove(trip1);
-		 driverTripList.remove(trip1);
-
-		 customer.setTripBookingList(customerTripList);
-		 driver.setTripBookingList(driverTripList);
+		TripBooking tripBooking=tripBookingRepository2.findById(tripId).get();
+		tripBooking.setStatus(TripStatus.CANCELED);
+		tripBooking.setBill(0);
+		Driver driver=tripBooking.getDriver();
+		driver.getCab().setAvailable(true);
+		driverRepository2.save(driver);
+		tripBookingRepository2.save(tripBooking);
 
 
 	}
@@ -97,22 +87,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void completeTrip(Integer tripId){
 		//Complete the trip having given trip Id and update TripBooking attributes accordingly
-       TripBooking oldTrip  = tripBookingRepository2.findById(tripId).get();
-	   TripBooking trip  = tripBookingRepository2.findById(tripId).get();
-	   trip.setStatus(TripStatus.COMPLETED);
-
-		Customer customer  = trip.getCustomer();
-		Driver driver  = trip.getDriver();
-		List<TripBooking> customerTripList  = customer.getTripBookingList();
-		List<TripBooking> driverTripList  = driver.getTripBookingList();
-
-		customerTripList.add(trip);
-		driverTripList.add(trip);
-
-		customerTripList.remove(oldTrip);
-		driverTripList.remove(oldTrip);
-
-		customer.setTripBookingList(customerTripList);
-		driver.setTripBookingList(driverTripList);
+		TripBooking tripBooking=tripBookingRepository2.findById(tripId).get();
+		tripBooking.setStatus(TripStatus.COMPLETED);
+		Driver driver=tripBooking.getDriver();
+		driver.getCab().setAvailable(true);
+		driverRepository2.save(driver);
+		tripBookingRepository2.save(tripBooking);
 	}
 }
