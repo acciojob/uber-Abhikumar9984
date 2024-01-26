@@ -59,10 +59,21 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 
 		List<TripBooking> list  = RequiredDriver.getTripBookingList();
+        Customer customer  = customerRepository2.findById(customerId).get();
+		List<TripBooking> list2  = customer.getTripBookingList();
 
 		TripBooking newTrip  = new TripBooking(fromLocation , toLocation , distanceInKm , TripStatus.CONFIRMED);
 		newTrip.setCustomer(customerRepository2.findById(customerId).get());
+		newTrip.setDriver(RequiredDriver);
+		newTrip  =  tripBookingRepository2.save(newTrip);
 		list.add(newTrip);
+		list2.add(newTrip);
+
+		customer.setTripBookingList(list2);
+		RequiredDriver.setTripBookingList(list);
+
+		customerRepository2.save(customer);
+		driverRepository2.save(RequiredDriver);
 
 		return newTrip;
 	}
