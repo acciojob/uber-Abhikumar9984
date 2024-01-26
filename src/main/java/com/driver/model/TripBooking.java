@@ -38,6 +38,16 @@ public class TripBooking{
         this.status = status;
     }
 
+    public TripBooking(String fromLocation, String toLocation, Integer distanceInKm, TripStatus status, Integer bill, Customer customer, Driver driver) {
+        this.fromLocation = fromLocation;
+        this.toLocation = toLocation;
+        this.distanceInKm = distanceInKm;
+        this.status = status;
+        this.bill = bill;
+        this.customer = customer;
+        this.driver = driver;
+    }
+
     public Integer getTripBookingId() {
         return tripBookingId;
     }
